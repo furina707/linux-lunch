@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Python Launcher
+Name[zh_CN]=Python 启动器
+Comment=Launch Python scripts directly
+Comment[zh_CN]=直接运行 Python 脚本
+Exec=/opt/linux-lunch/python_launcher.py %F
+Icon=text-x-python
+Terminal=true
+Categories=Development;Utility;Application;
+MimeType=text/x-python;text/x-python3;application/x-python;
+NoDisplay=false
+X-GNOME-Autostart-enabled=false
+StartupNotify=true
+Keywords=python;script;launcher;run;

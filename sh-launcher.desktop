@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Shell 脚本启动器
+Comment=Run shell scripts directly
+Comment[zh_CN]=直接运行 Shell 脚本
+Exec=/opt/linux-lunch/sh_launcher.sh %F
+Icon=utilities-terminal
+Terminal=true
+Categories=Utility;System;Application;
+MimeType=application/x-shellscript;text/x-shellscript;application/x-sh;application/x-bash;
+NoDisplay=false
+X-GNOME-Autostart-enabled=false
+StartupNotify=true
+Keywords=shell;bash;script;launcher;run;
