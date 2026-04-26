@@ -195,10 +195,10 @@ if [ ! -x "$SCRIPT_PATH" ]; then
 fi
 cd "$(dirname "$SCRIPT_PATH")"
 echo "正在运行：$SCRIPT_PATH"
-echo "================================"
+echo "==============================="
 bash "$SCRIPT_PATH"
 EXIT_CODE=$?
-echo "================================"
+echo "==============================="
 echo "脚本执行完成，退出码：$EXIT_CODE"
 exit $EXIT_CODE
 SHEOF
@@ -267,18 +267,6 @@ $SUDO mkdir -p /usr/share/applications
 $SUDO cp "$INSTALL_DIR/python-launcher.desktop" /usr/share/applications/
 $SUDO cp "$INSTALL_DIR/sh-launcher.desktop" /usr/share/applications/
 success "桌面文件已复制到系统目录"
-
-# 复制桌面文件到用户目录（确保应用程序菜单显示）
-if [ -w "$HOME/.local/share/applications" ]; then
-    mkdir -p "$HOME/.local/share/applications"
-    cp "$INSTALL_DIR/python-launcher.desktop" "$HOME/.local/share/applications/"
-    cp "$INSTALL_DIR/sh-launcher.desktop" "$HOME/.local/share/applications/"
-    update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
-    success "桌面文件已复制到用户目录"
-else
-    warning "无法访问用户目录，跳过复制到用户目录的步骤"
-    warning "请手动复制：cp $INSTALL_DIR/*.desktop ~/.local/share/applications/"
-fi
 
 # 更新桌面数据库
 if available update-desktop-database; then
@@ -371,15 +359,12 @@ echo "现在您可以："
 echo "  ✓ 双击 .py 文件使用 Python 启动器运行"
 echo "  ✓ 双击 .sh 文件使用 Shell 启动器运行"
 echo
-
 echo "命令行使用："
 echo "  $INSTALL_DIR/python_launcher.py script.py"
 echo "  $INSTALL_DIR/sh_launcher.sh script.sh"
 echo
-
 echo "系统已自动刷新，启动器应该立即显示。"
 echo
-
 echo "如需卸载，运行："
 echo "  $SUDO bash uninstall.sh"
 echo

@@ -38,10 +38,7 @@ $SUDO rm -f /usr/share/applications/python-launcher.desktop 2>/dev/null || true
 $SUDO rm -f /usr/share/applications/sh-launcher.desktop 2>/dev/null || true
 success "系统桌面文件已删除"
 
-rm -f "$HOME/.local/share/applications/python-launcher.desktop" 2>/dev/null || true
-rm -f "$HOME/.local/share/applications/sh-launcher.desktop" 2>/dev/null || true
-update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
-success "用户桌面文件已删除"
+# 移除用户桌面文件的步骤已移除（系统级安装已足够）
 
 if command -v xdg-mime >/dev/null 2>&1; then
     $SUDO xdg-mime default text-x-python.desktop text/x-python 2>/dev/null || true
