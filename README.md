@@ -58,11 +58,22 @@ sudo bash install-system.sh
 
 ## 卸载
 
-```bash
-# 方法一：使用卸载脚本
-sudo bash uninstall.sh
+### 方法一：curl 一键卸载
 
-# 方法二：手动卸载
+```bash
+curl -fsSL https://raw.githubusercontent.com/furina707/linux-lunch/master/uninstall.sh | sudo bash
+```
+
+### 方法二：使用卸载脚本
+
+```bash
+# 在项目目录中运行
+sudo bash uninstall.sh
+```
+
+### 方法三：手动卸载
+
+```bash
 sudo rm -rf /opt/linux-lunch
 sudo rm /usr/share/applications/python-launcher.desktop
 sudo rm /usr/share/applications/sh-launcher.desktop
