@@ -7,14 +7,17 @@
 ### 方法一：curl 一键安装（推荐）
 
 ```bash
-curl -fsSL <脚本_URL> | sudo bash
+curl -fsSL https://raw.githubusercontent.com/furina707/linux-lunch/master/install-system.sh | sudo bash
 ```
 
-### 方法二：本地安装
+### 方法二：克隆仓库后安装
 
 ```bash
-# 进入项目目录
-cd /path/to/linux-lunch
+# 克隆仓库
+git clone https://github.com/furina707/linux-lunch.git
+
+# 进入目录
+cd linux-lunch
 
 # 运行安装脚本
 sudo bash install-system.sh
@@ -56,6 +59,10 @@ sudo bash install-system.sh
 ## 卸载
 
 ```bash
+# 方法一：使用卸载脚本
+sudo bash uninstall.sh
+
+# 方法二：手动卸载
 sudo rm -rf /opt/linux-lunch
 sudo rm /usr/share/applications/python-launcher.desktop
 sudo rm /usr/share/applications/sh-launcher.desktop
