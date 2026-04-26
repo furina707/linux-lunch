@@ -2,7 +2,7 @@
 
 一键安装，让所有 `.py` 和 `.sh` 文件都可以通过双击直接运行！
 
-## 快速安装
+## 🚀 快速安装
 
 ### 方法一：curl 一键安装（推荐）
 
@@ -23,7 +23,7 @@ cd linux-lunch
 sudo bash install-system.sh
 ```
 
-## 功能特点
+## ✨ 功能特点
 
 ### Python 启动器
 - ✅ 双击 `.py` 文件直接运行
@@ -37,15 +37,16 @@ sudo bash install-system.sh
 - ✅ 显示执行状态和退出码
 - ✅ 切换到脚本目录执行
 
-## 安装位置
+## 📁 安装位置
 
-- 系统目录：`/opt/linux-lunch`
-- 桌面文件：`/usr/share/applications/`
+- **系统目录**：`/opt/linux-lunch`
+- **桌面文件**：`/usr/share/applications/`
 
-## 使用方式
+## 🎯 使用方式
 
 ### 图形界面
 - 双击任何 `.py` 或 `.sh` 文件即可运行
+- 右键菜单选择启动器选项
 
 ### 命令行
 ```bash
@@ -56,7 +57,7 @@ sudo bash install-system.sh
 /opt/linux-lunch/sh_launcher.sh script.sh
 ```
 
-## 卸载
+## 🗑️ 卸载
 
 ### 方法一：curl 一键卸载
 
@@ -79,13 +80,25 @@ sudo rm /usr/share/applications/python-launcher.desktop
 sudo rm /usr/share/applications/sh-launcher.desktop
 ```
 
-## 系统要求
+## 🔧 系统要求
 
 - Linux 操作系统
 - Python 3
 - Bash
 - XDG 兼容的桌面环境（GNOME、KDE、XFCE 等）
 
-## 许可证
+## 📄 许可证
 
 MIT License
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📞 联系方式
+
+- GitHub: [furina707](https://github.com/furina707)
+
+---
+
+**享受 Linux Lunch 带来的便捷体验！** 🎉
