@@ -148,8 +148,9 @@ def run_script(script_path, args=None, python_cmd='python3'):
     cmd = [python_cmd, script_path]
     if args:
         cmd.extend(args)
+    script_dir = os.path.dirname(os.path.abspath(script_path))
     try:
-        result = subprocess.run(cmd, cwd=os.getcwd())
+        result = subprocess.run(cmd, cwd=script_dir)
         sys.exit(result.returncode)
     except Exception as e:
         print(f"Error running script: {e}")
@@ -193,13 +194,38 @@ if [ ! -x "$SCRIPT_PATH" ]; then
     echo "正在添加执行权限..."
     chmod +x "$SCRIPT_PATH"
 fi
-cd "$(dirname "$SCRIPT_PATH")"
-echo "正在运行：$SCRIPT_PATH"
-echo "==============================="
-bash "$SCRIPT_PATH"
-EXIT_CODE=$?
-echo "==============================="
-echo "脚本执行完成，退出码：$EXIT_CODE"
+run_script() {
+    cd "$(dirname "$SCRIPT_PATH")"
+    echo "正在运行：$SCRIPT_PATH"
+    echo "================================"
+    bash "$SCRIPT_PATH"
+    EXIT_CODE=$?
+    echo "================================"
+    echo "脚本执行完成，退出码：$EXIT_CODE"
+    return $EXIT_CODE
+}
+sigint_handler() {
+    echo ""
+    echo "========================================"
+    echo "        脚本被强制终止 (Ctrl+C)"
+    echo "========================================"
+    EXIT_CODE=130
+}
+trap sigint_handler SIGINT
+while true; do
+    run_script
+    echo ""
+    read -p "是否重启脚本？(y/N): " -n 1 -r
+    echo ""
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+        exit $EXIT_CODE
+    fi
+    echo ""
+    echo "========================================"
+    echo "              重启脚本..."
+    echo "========================================"
+    echo ""
+done
 exit $EXIT_CODE
 SHEOF
     $SUDO cp "$TEMP_DIR/sh_launcher.sh" "$INSTALL_DIR/"

@@ -37,8 +37,11 @@ def run_script(script_path, args=None, python_cmd='python3'):
     if args:
         cmd.extend(args)
     
+    # 获取脚本所在目录作为工作目录
+    script_dir = os.path.dirname(os.path.abspath(script_path))
+    
     try:
-        result = subprocess.run(cmd, cwd=os.getcwd())
+        result = subprocess.run(cmd, cwd=script_dir)
         sys.exit(result.returncode)
     except Exception as e:
         print(f"Error running script: {e}")

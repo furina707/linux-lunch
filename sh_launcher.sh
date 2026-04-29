@@ -29,15 +29,53 @@ if [ ! -x "$SCRIPT_PATH" ]; then
     chmod +x "$SCRIPT_PATH"
 fi
 
-# 切换到脚本所在目录
-cd "$(dirname "$SCRIPT_PATH")"
+# 执行脚本的函数
+run_script() {
+    # 切换到脚本所在目录
+    cd "$(dirname "$SCRIPT_PATH")"
 
-# 执行脚本
-echo "正在运行：$SCRIPT_PATH"
-echo "================================"
-bash "$SCRIPT_PATH"
-EXIT_CODE=$?
-echo "================================"
-echo "脚本执行完成，退出码：$EXIT_CODE"
+    # 执行脚本，捕获退出码
+    echo "正在运行：$SCRIPT_PATH"
+    echo "================================"
+    bash "$SCRIPT_PATH"
+    EXIT_CODE=$?
+    echo "================================"
+    echo "脚本执行完成，退出码：$EXIT_CODE"
+
+    return $EXIT_CODE
+}
+
+# 信号捕获函数
+sigint_handler() {
+    echo ""
+    echo "========================================"
+    echo "        脚本被强制终止 (Ctrl+C)"
+    echo "========================================"
+    EXIT_CODE=130
+}
+
+# 设置信号捕获
+trap sigint_handler SIGINT
+
+# 主循环
+while true; do
+    run_script
+
+    # 询问用户是否要重启（默认重启）
+    echo ""
+    read -p "是否重启脚本？(y/N): " -n 1 -r
+    echo ""
+
+    # 如果输入 n 或 N，则退出；否则默认重启
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+        exit $EXIT_CODE
+    fi
+
+    echo ""
+    echo "========================================"
+    echo "              重启脚本..."
+    echo "========================================"
+    echo ""
+done
 
 exit $EXIT_CODE
